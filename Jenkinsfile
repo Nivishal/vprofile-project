@@ -44,7 +44,10 @@ pipeline {
             }
         }
 
-       /*   stage('Sonar Analysis') {         
+        stage('Sonar Analysis') {         
+                   tools {
+                jdk 'OracleJDK11' 
+            }
 		  environment {
              scannerHome = tool "${SONARSCANNER}"
              }
@@ -60,6 +63,6 @@ pipeline {
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
              }
            }
-        }*/
+        }
     }
 }
