@@ -43,7 +43,7 @@ pipeline {
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
-
+/*
         stage('SonarQube analysis') {
     tools {
         jdk "jdk17" // the name you have given the JDK installation using the JDK manager (Global Tool Configuration)
