@@ -44,7 +44,21 @@ pipeline {
             }
         }
 
-        stage('Sonar Analysis') {         
+        stage('SonarQube analysis') {
+    tools {
+        jdk "jdk17" // the name you have given the JDK installation using the JDK manager (Global Tool Configuration)
+    }
+    environment {
+        scannerHome = tool 'SONARSCANNER' // the name you have given the Sonar Scanner (Global Tool Configuration)
+    }
+    steps {
+        withSonarQubeEnv(installationName: 'SonarQube') {
+            sh 'mvn sonar:sonar'
+        }
+    }
+}
+
+   /*    stage('Sonar Analysis') {         
 		  environment {
              scannerHome = tool "${SONARSCANNER}"
              }
@@ -60,6 +74,6 @@ pipeline {
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
              }
            }
-        }
+        }*/
     }
 }
